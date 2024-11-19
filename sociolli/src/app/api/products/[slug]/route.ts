@@ -1,6 +1,6 @@
 import Product from "@/app/db/models/products"
 
-type SecondArgs = {
+export type SecondArgs = {
   params: {
     slug: string
   }

@@ -1,6 +1,6 @@
 import { database } from "../config";
 
-type ProductType = {
+export type ProductType = {
   name: string;
   slug: string;
   description: string;
