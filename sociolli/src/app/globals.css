@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Brandon+Text:wght@10;400;700&display=swap');
+
+body {
+  font-family: 'Brandon Text', sans-serif;
+}
+
+/* @font-face {
+  font-family: "brandontext-regular";
+  src: url("https://fonts.googleapis.com/css2?family=FontName:wght@200;400;700&display=swap") format("woff2");
+  font-weight: 200;
+  font-style: light;
+} */
+
+
 /* :root {
   --background: #ffffff;
   --foreground: #171717;
