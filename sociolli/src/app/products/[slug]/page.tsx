@@ -17,7 +17,6 @@ export default async function Page({ params}: SecondArgs) {
   // console.log('ini response',response);
   return (
     <div>
-      <h1>Product</h1>
       <DetailProduct product={product}/>
     </div>
   )
