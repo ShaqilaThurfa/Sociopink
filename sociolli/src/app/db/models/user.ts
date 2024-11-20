@@ -1,7 +1,9 @@
 import { database } from "@/app/db/config"
-import { ObjectId } from "mongodb"
+import { ObjectId, Filter } from "mongodb"
 import {hashPassword} from "@/app/helpers/hashingpassword"
 import { z } from "zod"
+
+
 
 // type UserType = {
 //   _id: ObjectId
@@ -31,5 +33,9 @@ export default class User {
     body.password = hashPassword(body.password)
     // console.log(body.password);
     await this.col.insertOne(body)
+  }
+
+  static async findOne(filter: Filter<UserType>){
+    return await this.col.findOne(filter)
   }
 }

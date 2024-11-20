@@ -1,6 +1,6 @@
 import User, { UserSchema } from "@/app/db/models/user"
-import { ZodError } from "zod"
-import { HttpError } from "@/app/helpers/errorHandler"
+import { errorHandler } from "@/app/helpers/errorHandler"
+
 
 
 export async function POST(request: Request) {
@@ -15,14 +15,16 @@ export async function POST(request: Request) {
 
   } catch (error) {
     console.log(error);
-    if (error instanceof ZodError) {
-      const message = error.issues[0].message.toLowerCase()
-      return Response.json({ message }, { status: 400 })
-    }
 
-    if(error instanceof HttpError) {
-      return Response.json({ message: error.message }, { status: error.status })
-    }
+    return errorHandler(error)
+    // if (error instanceof ZodError) {
+    //   const message = error.issues[0].message.toLowerCase()
+    //   return Response.json({ message }, { status: 400 })
+    // }
+
+    // if(error instanceof HttpError) {
+    //   return Response.json({ message: error.message }, { status: error.status })
+    // }
 
   }
 
