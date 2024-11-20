@@ -1,4 +1,4 @@
-import react from "react"
+
 import { ProductType } from '@/app/db/models/products'
 import AddToWishList from "./addToWishList"
 
@@ -8,7 +8,7 @@ type DetailProductProps = {
 
 export default function DetailProduct({ product }: DetailProductProps) {
   return (
-    <div className="max-w-7xl mx-10 flex flex-wrap md:flex-nowrap justify-evenly items-stretch gap-x-4 gap-y-4">
+    <div className="max-w-5xl mx-10 flex flex-wrap md:flex-nowrap justify-evenly items-stretch gap-x-4 gap-y-4">
       <div className="flex-1 space-y-4">
         <div className="relative">
           <img
@@ -40,14 +40,16 @@ export default function DetailProduct({ product }: DetailProductProps) {
           />
         </div>
 
-        <div className="flex">
-          <AddToWishList/> 
-          </div>
+        
       </div>
 
       <div className="flex-1 md:ml-8 mt-10 md:mt-0 gap-y-18">
-        <h1 className="font-sans font-bold text-xl uppercase tracking-[0.2em] text-black">
+        <h1 className="font-sans font-bold text-[-17px] uppercase tracking-[0.2em] text-black">
           {product.name}
+        </h1>
+
+        <h1 className="font-sans font-normal text-[16px] text-gray">
+          {product.excerpt}
         </h1>
 
         {product.tags.length > 0 && (
@@ -76,10 +78,14 @@ export default function DetailProduct({ product }: DetailProductProps) {
               }} >Rp. {product.price.toLocaleString("id-ID")}</p>
           
         </div>
+
+        <div className="flex">
+          <AddToWishList/> 
+          </div>
       
       </div>
 
-      <div className="flex-1 md:ml-8 mt-10 md:mt-0 gap-y-18">
+      {/* <div className="flex-1 md:ml-8 mt-10 md:mt-0 gap-y-18">
           <h2 className="text-gray-800 font-bold">SPECIAL PROMO</h2>
           <ul className="mt-4 space-y-2">
             <li className="flex items-center justify-between border p-4 rounded">
@@ -95,7 +101,7 @@ export default function DetailProduct({ product }: DetailProductProps) {
             </li>
           </ul>
           <button className="mt-4 text-red-500 hover:underline">See all</button>
-        </div>
+        </div> */}
     </div>
 
   )

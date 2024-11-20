@@ -1,3 +1,6 @@
+
+
+
 export default function AddToWishList() {
   return (
     <div className="container flex items-center justify-center w-22 h-16 border-2 border-gray-300 rounded gap-x-2">

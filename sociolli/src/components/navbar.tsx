@@ -1,8 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import FooterNavBar from "./navbar2";
-
 
 
 export default function Navbar() {
@@ -28,7 +26,6 @@ export default function Navbar() {
 
         <Link href="/login" className="btn btn-ghost text-xl"> Login </Link>
 
-        
         <div className="indicator">
           <svg
             xmlns="http://www.w3.org/2000/svg"

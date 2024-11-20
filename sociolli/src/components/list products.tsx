@@ -28,7 +28,7 @@ export default function ProductsList({ products }: ProductsListProps) {
             <h2 className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-black">
               {product.name}
             </h2>
-            <h3 className="font-sans text-[13px] text-gray">
+            <h3 className="font-sans font-normal text-[13px] text-black">
               {product.description.substring(0, 50)}
             </h3>
             <p
