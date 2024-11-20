@@ -1,11 +1,15 @@
+'use client'
+
 import React from "react";
 import type { ProductType } from "@/app/db/models/products";
+import { useRouter } from "next/navigation";
 
 type ProductsListProps = {
   products: ProductType[];
 };
 
 export default function ProductsList({ products }: ProductsListProps) {
+  const router = useRouter();
   return (
     <div className="flex flex-wrap mx-0 w-full justify-evenly">
       {products.map((product) => (
@@ -43,6 +47,7 @@ export default function ProductsList({ products }: ProductsListProps) {
                   backgroundColor: "#da2a52",
                   color: "white",
                 }}
+                onClick={()=> router.push(`/products/${product.slug}`)}
               >
                 Detail Product
               </button>
