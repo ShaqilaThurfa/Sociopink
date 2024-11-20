@@ -4,12 +4,18 @@ import SociollaTitle from "@/components/sociolla";
 import Link from "next/link";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import { useRouter } from 'next/navigation'
+
+
 
 export default function Page() {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const router = useRouter()
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,6 +45,8 @@ export default function Page() {
         text: `${data.message}`,
         timer: 2000,
       })
+
+      router.push('/login')
 
     } catch (error) {
       console.error("Error:", error);
@@ -111,7 +119,7 @@ export default function Page() {
             type="submit"
             className="w-full p-2 text-white bg-pink-600 rounded hover:bg-pink-700"
           >
-            Submit
+            Register
           </button>
         </form>
 

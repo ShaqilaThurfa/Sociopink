@@ -9,10 +9,15 @@ export default function MainLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
-      <Navbar />
-      <FooterNavBar />
-      {children}
-    </>
+    <div className="relative">
+      <div className="sticky top-0 z-50 bg-white shadow">
+        <Navbar />
+        <FooterNavBar />
+      </div>
+      <main>
+        {children}
+      </main>
+    </div>
+
   );
 }
