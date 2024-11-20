@@ -1,6 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import SociollaTitle from "./sociolla";
+
+
+
 
 
 export default function Navbar() {
@@ -10,10 +14,11 @@ export default function Navbar() {
   return (
     <nav className="navbar bg-base-100 py-4 px-6">
      
-      <div className="flex-1 flex items-center gap-4">
-        <Link href="/" className="btn btn-ghost text-xl">
+      <div className="flex-1 flex items-center gap-8">
+        {/* <Link href="/" className="btn btn-ghost text-xl">
           Sociolli
-        </Link>
+        </Link> */}
+        <SociollaTitle/>
         <input
           type="text"
           placeholder="Search"

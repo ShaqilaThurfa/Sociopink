@@ -1,9 +1,16 @@
+'use client'
+
+import SociollaTitle from "@/components/sociolla"
 import Link from "next/link"
 
 
 export default function Page() {
   return (
     <div className="my-8 gap-8">
+
+      <div className="mx-5">
+        <SociollaTitle/>
+      </div>
 
       <p>Alamat Email </p>
       <label className="input input-bordered flex items-center gap-2 my-8">
