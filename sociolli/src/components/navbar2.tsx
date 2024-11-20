@@ -11,7 +11,7 @@ export default function FooterNavBar() {
   // }
 
   return (
-    <div className="bg-base-100 py-2 shadow-md">
+    <div className="bg-base-100 shadow-md">
       <div className="container mx-auto">
         <ul className="menu menu-horizontal px-4 gap-4">
           <li>
