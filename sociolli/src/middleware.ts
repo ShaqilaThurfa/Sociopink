@@ -1,5 +1,4 @@
 import * as jose from 'jose'
-import jwt from 'jsonwebtoken';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'

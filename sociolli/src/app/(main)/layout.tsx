@@ -10,7 +10,7 @@ export default function MainLayout({
 }>) {
   return (
     <div className="relative">
-      <div className="sticky top-0 z-50 bg-white shadow">
+      <div className="mx-auto sticky top-0 z-50 bg-white shadow my-5">
         <Navbar />
         <FooterNavBar />
       </div>

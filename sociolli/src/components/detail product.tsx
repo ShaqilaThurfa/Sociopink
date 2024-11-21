@@ -1,4 +1,3 @@
-
 import { ProductType } from '@/app/db/models/products'
 import AddToWishList from "./addToWishList"
 
@@ -8,7 +7,8 @@ type DetailProductProps = {
 
 export default function DetailProduct({ product }: DetailProductProps) {
   return (
-    <div className="max-w-5xl mx-10 flex flex-wrap md:flex-nowrap justify-evenly items-stretch gap-x-4 gap-y-4">
+    <div className="max-w-5xl mx-auto flex flex-wrap md:flex-nowrap justify-start items-start gap-x-8 gap-y-8">
+     
       <div className="flex-1 space-y-4">
         <div className="relative">
           <img
@@ -18,47 +18,34 @@ export default function DetailProduct({ product }: DetailProductProps) {
           />
         </div>
         <div className="flex gap-2">
-          <img
-            src={product.images[1]}
-            alt="Thumbnail 1"
-            className="w-20 h-20 object-cover rounded-md cursor-pointer border border-gray-200 hover:border-red-500"
-          />
-          <img
-            src={product.images[2]}
-            alt="Thumbnail 2"
-            className="w-20 h-20 object-cover rounded-md cursor-pointer border border-gray-200 hover:border-red-500"
-          />
-          <img
-            src={product.images[3]}
-            alt="Thumbnail 3"
-            className="w-20 h-20 object-cover rounded-md cursor-pointer border border-gray-200 hover:border-red-500"
-          />
-          <img
-            src={product.images[4]}
-            alt="Thumbnail 3"
-            className="w-20 h-20 object-cover rounded-md cursor-pointer border border-gray-200 hover:border-red-500"
-          />
+          {product.images.slice(1, 5).map((image, index) => (
+            <img
+              key={index}
+              src={image}
+              alt={`Thumbnail ${index + 1}`}
+              className="w-20 h-20 object-cover rounded-md cursor-pointer border border-gray-200 hover:border-red-500"
+            />
+          ))}
         </div>
-
-        
       </div>
 
-      <div className="flex-1 md:ml-8 mt-10 md:mt-0 gap-y-18">
-        <h1 className="font-sans font-bold text-[-17px] uppercase tracking-[0.2em] text-black">
+      {/* Bagian Detail Produk */}
+      <div className="flex-1 flex flex-col space-y-6">
+        <h1 className="font-sans font-bold text-xl uppercase tracking-[0.2em] text-black">
           {product.name}
         </h1>
 
-        <h1 className="font-sans font-normal text-[16px] text-gray">
+        <p className="font-sans font-normal text-base text-gray-600">
           {product.excerpt}
-        </h1>
+        </p>
 
         {product.tags.length > 0 && (
-          <div className="flex flex-wrap my-8">
+          <div className="flex flex-wrap my-4">
             {product.tags.map((tag, index) => (
               <span
                 key={index}
-                className="inline-block font-sans font-bold text-[10px] uppercase tracking-[0.2em] px-3 py-1 rounded-[10px] mx-1"
-                style={{ backgroundColor: "#fedfe2"}}
+                className="inline-block font-sans font-bold text-xs uppercase tracking-[0.2em] px-3 py-1 rounded-md mx-1"
+                style={{ backgroundColor: "#fedfe2" }}
               >
                 {tag}
               </span>
@@ -66,43 +53,24 @@ export default function DetailProduct({ product }: DetailProductProps) {
           </div>
         )}
 
-        <div className="my-8">
-        <p className="font-sans text-[16px] text-gray">{product.description}</p>
-        </div>
+        <p className="font-sans text-base text-gray-700">
+          {product.description}
+        </p>
 
-        <div className="my-8">
-          <p className="text-[20px] font-bold leading-[22px]" 
-              style={{
-                fontFamily: "Lato, sans-serif",
-                color: "#da2a52",
-              }} >Rp. {product.price.toLocaleString("id-ID")}</p>
-          
-        </div>
+        <p
+          className="text-2xl font-bold"
+          style={{
+            fontFamily: "Lato, sans-serif",
+            color: "#da2a52",
+          }}
+        >
+          Rp. {product.price.toLocaleString("id-ID")}
+        </p>
 
-        <div className="flex">
-          <AddToWishList/> 
-          </div>
-      
+        <div className="mt-2">
+          <AddToWishList productId={product._id} />
+        </div>
       </div>
-
-      {/* <div className="flex-1 md:ml-8 mt-10 md:mt-0 gap-y-18">
-          <h2 className="text-gray-800 font-bold">SPECIAL PROMO</h2>
-          <ul className="mt-4 space-y-2">
-            <li className="flex items-center justify-between border p-4 rounded">
-              <span className="text-gray-700">REDEEM BEAUTY...</span>
-              <span className="text-gray-400">30 Nov 2024</span>
-            </li>
-            <li className="flex items-center justify-between border p-4 rounded">
-              <span className="text-gray-700">REDEEM BEAUTY...</span>
-              <span className="text-gray-400">30 Nov 2024</span>
-            </li>
-            <li className="flex items-center justify-between border p-4 rounded">
-              <span className="text-gray-700">FREE GIFT RATE...</span>
-            </li>
-          </ul>
-          <button className="mt-4 text-red-500 hover:underline">See all</button>
-        </div> */}
     </div>
-
-  )
+  );
 }

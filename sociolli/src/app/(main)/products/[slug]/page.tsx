@@ -11,13 +11,14 @@ export default async function Page({ params}: SecondArgs) {
 
   const response = await fetch(`http://localhost:3000/api/products/${slug}`);
 
-  const product: ProductType[] = await response.json();
+  const products: ProductType[] = await response.json();
+  
 
   // console.log('ini isi apa',product.price);
   // console.log('ini response',response);
   return (
     <div>
-      <DetailProduct product={product}/>
+      <DetailProduct product={products}/>
     </div>
   )
 }

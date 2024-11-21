@@ -1,19 +1,22 @@
-'use client'
+'use client';
 
 import Swal from "sweetalert2";
-import { useRouter } from 'next/navigation'
-import React, { useState } from 'react';
+import { useRouter } from "next/navigation";
+import React, { useState, useEffect } from "react";
 
 type AddToWishListProps = {
-  productId: string; 
+  productId: string;
 };
 
+export default function AddToWishList({ productId }: AddToWishListProps) {
+  const [isWishlisted, setIsWishlisted] = useState(false);
 
 
-export default function AddToWishList({productId}: AddToWishListProps) {
-
-  const router = useRouter()
-  const [isWishlisted, setIsWishlisted] = useState(false)
+  useEffect(() => {
+    const wishlistedProducts = localStorage.getItem("wishlist");
+    const wishlistArray = wishlistedProducts ? JSON.parse(wishlistedProducts) : [];
+    setIsWishlisted(wishlistArray.includes(productId));
+  }, [productId]);
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -23,41 +26,43 @@ export default function AddToWishList({productId}: AddToWishListProps) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          productId
-        }),
+        body: JSON.stringify({ productId }),
       });
 
       if (!res.ok) {
-        const errorData = await res.json(); 
-        throw new Error(errorData.message); 
+        const errorData = await res.json();
+        throw new Error(errorData.message);
       }
 
       const data = await res.json();
-      // console.log("Success:", data);
-      setIsWishlisted(true);
+      console.log("Success:", data);
+
       Swal.fire({
         title: "Success!",
-        text: `${data.message}`,
+        text: "This product has been added to your wishlist",
         timer: 2000,
-      })
+      });
 
-      router.push('/products')
-
+      
+      const wishlistedProducts = localStorage.getItem("wishlist");
+      const wishlistArray = wishlistedProducts ? JSON.parse(wishlistedProducts) : [];
+      if (!wishlistArray.includes(productId)) {
+        wishlistArray.push(productId);
+        localStorage.setItem("wishlist", JSON.stringify(wishlistArray));
+        setIsWishlisted(true); 
+      }
     } catch (error) {
       console.error("Error:", error);
-      if(error instanceof Error){
-        Swal.fire({
-          title: "Error!",
-          text: error.message,
-          timer: 2000,
-        })
-      }
+      Swal.fire({
+        title: "Error!",
+        text: error instanceof Error ? error.message : "Something went wrong",
+        timer: 2000,
+      });
     }
   };
 
   return (
-    <div className="container flex items-center justify-center w-22 h-10 border-2 border-gray-300 rounded gap-x-2">
+    <div className="container flex items-center justify-center w-22 h-8 border-2 border-gray-300 rounded-md gap-x-2">
       <div
         className={`${
           isWishlisted ? "text-pink-500" : "text-gray-500"
@@ -66,9 +71,9 @@ export default function AddToWishList({productId}: AddToWishListProps) {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="w-6 h-6"
-          fill={isWishlisted ? "pink" : "none"} 
+          fill={isWishlisted ? "currentColor" : "none"}
           viewBox="0 0 24 24"
-          stroke={isWishlisted ? "pink" : "currentColor"} 
+          stroke="currentColor"
           strokeWidth="2"
         >
           <path
@@ -82,11 +87,9 @@ export default function AddToWishList({productId}: AddToWishListProps) {
       <button
         className="font-sans font-bold text-xs"
         onClick={handleSubmit}
-        // disabled={isWishlisted}
       >
-        {isWishlisted ? "Wishlisted" : "Add To WishList"}
+        {isWishlisted ? "Wishlisted" : "Add to Wishlist"}
       </button>
     </div>
-
-  )
+  );
 }

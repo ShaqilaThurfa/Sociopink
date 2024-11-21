@@ -33,7 +33,7 @@ export async function POST(request: Request) {
 
     // console.log(token);
     
-    cookies().set("Authorization", `Bearer ${token}`)
+    // cookies().set("Authorization", `Bearer ${token}`)
     
     // return Response.json({ message: "Login success" }, { status: 200 })
     return NextResponse.json({

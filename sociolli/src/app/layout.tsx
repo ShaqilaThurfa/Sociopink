@@ -31,7 +31,7 @@ export default function RootLayout({
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="antialiased">
         
-        <main className="mt-2 flex justify-center">{children}</main>
+        <main className="my-2">{children}</main>
       </body>
     </html>
   );

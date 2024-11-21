@@ -1,6 +1,7 @@
 import { database } from "../config";
 
 export type ProductType = {
+  _id: string;
   name: string;
   slug: string;
   description: string;
@@ -8,7 +9,7 @@ export type ProductType = {
   price: number;
   tags: string[];
   thumbnail: string;
-  image: string[];
+  images: string[];
   createdAt: string;
   updatedAt: string;
 }
