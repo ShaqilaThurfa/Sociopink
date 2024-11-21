@@ -17,7 +17,7 @@ export default function Page() {
   const router = useRouter()
   
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
       const res = await fetch("http://localhost:3000/api/users/register", {
@@ -50,11 +50,13 @@ export default function Page() {
 
     } catch (error) {
       console.error("Error:", error);
-      Swal.fire({
-        title: "Error!",
-        text: error.message,
-        timer: 2000,
-      })
+      if(error instanceof Error){
+        Swal.fire({
+          title: "Error!",
+          text: error.message,
+          timer: 2000,
+        })
+      }
     }
   };
 

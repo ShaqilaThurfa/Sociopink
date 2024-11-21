@@ -1,8 +1,10 @@
 'use client'
 
+import { HttpError } from "@/app/helpers/errorHandler"
 import SociollaTitle from "@/components/sociolla"
+import Cookies from 'js-cookie'
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { redirect, useRouter } from "next/navigation"
 
 import { useState } from "react"
 import Swal from "sweetalert2"
@@ -29,14 +31,20 @@ export default function Page() {
         }),
       });
 
-      if (!res.ok) {
+      const data = await res.json() as { message?: string, accessToken?: string}  
+
+      // console.log("Success:", data);
+      if (!res.ok && data.message) {
         const errorData = await res.json(); 
         throw new Error(errorData.message); 
       }
 
-      const data = await res.json();  
+      // console.log(data.accessToken);
+      
+      Cookies.set('Authorization', `Bearer ${data.accessToken}`, { expires: 7 })
 
-      console.log("Success:", data);
+      // console.log(Cookies);
+      
 
       Swal.fire({
         title: "Success!",
@@ -47,11 +55,15 @@ export default function Page() {
       router.push('/')
     } catch (error) {
       console.log("Error:", error);
-      Swal.fire({
-        title: "Error!",
-        text: error.message,
-        timer: 2000,
-      })
+
+      if(error instanceof Error){
+        Swal.fire({
+          title: "Error!",
+          text: error.message,
+          timer: 2000,
+        })
+      }
+      
       
     }
   }

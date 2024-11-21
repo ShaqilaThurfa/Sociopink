@@ -1,5 +1,5 @@
 import User, { UserSchema } from "@/app/db/models/user"
-import { errorHandler } from "@/app/helpers/errorHandler"
+import { errorHandler, HttpError } from "@/app/helpers/errorHandler"
 
 
 
@@ -8,6 +8,13 @@ export async function POST(request: Request) {
 
   try {
     const body = await request.json()
+    const { email } = UserSchema.parse(body)
+
+    const existingUser = await User.findOne({email})
+
+    if(existingUser){
+      throw new HttpError("Email has been registered", 401)
+    }
   
     await User.create(body)
 

@@ -1,19 +1,13 @@
 'use client';
 
-import Link from "next/link"
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function FooterNavBar() {
-  const pathname = usePathname();
-
-  // if (pathname === "/login" || pathname === "/register") {
-  //   return null;
-  // }
-
   return (
     <div className="bg-base-100 shadow-md">
-      <div className="container mx-auto">
-        <ul className="menu menu-horizontal px-4 gap-4">
+      <div className="container mx-auto px-4">
+        <ul className="menu menu-horizontal px-0 gap-4">
           <li>
             <Link href="/products">Products</Link>
           </li>

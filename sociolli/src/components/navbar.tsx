@@ -1,34 +1,23 @@
-"use client";
+// 'use client';
 
 import Link from "next/link";
 import SociollaTitle from "./sociolla";
 
-
-
-
-
 export default function Navbar() {
-  
- 
-
   return (
-    <nav className="navbar bg-base-100 px-6">
-     
-      <div className="flex-1 flex items-center gap-8">
-        
-        <SociollaTitle/>
+    <nav className="navbar bg-base-100 px-6 py-2 flex items-center justify-between">
+      <div className="flex-1 flex items-center gap-4">
+        <SociollaTitle />
         <input
           type="text"
           placeholder="Search"
-          className="input input-bordered w-full lg:w-1/2"
+          className="input input-bordered w-full lg:w-1/2 h-10"
         />
       </div>
-
-      
       <div className="flex gap-4 items-center">
-
-        <Link href="/login" className="btn btn-ghost text-xl"> Login </Link>
-
+        <Link href="/login" className="btn btn-ghost text-xl h-10">
+          Login
+        </Link>
         <div className="indicator">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +35,6 @@ export default function Navbar() {
           </svg>
           <span className="badge badge-sm indicator-item">8</span>
         </div>
-    
       </div>
     </nav>
   );

@@ -3,6 +3,7 @@
 import React from "react";
 import type { ProductType } from "@/app/db/models/products";
 import { useRouter } from "next/navigation";
+import AddToWishList from "./addToWishList";
 
 type ProductsListProps = {
   products: ProductType[];
@@ -40,7 +41,10 @@ export default function ProductsList({ products }: ProductsListProps) {
             >
               Rp. {product.price.toLocaleString("id-ID")}
             </p>
-            <div className="card-actions mt-4">
+            <div className="mt-2">
+            <AddToWishList productId={product._id}/>
+            </div>
+            <div className="card-actions mt-1">
               <button
                 className="btn btn-sm w-full font-sans font-bold text-xs uppercase tracking-[0.1em]"
                 style={{
