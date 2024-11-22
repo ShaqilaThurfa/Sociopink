@@ -4,20 +4,20 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { errorHandler, HttpError } from './app/helpers/errorHandler';
 
-
 export async function middleware(request: NextRequest) {
   try {
 
   console.log("masuk middleware ga?");
-
+  console.log("Request method:", request.method)
   const authCookie = cookies().get('Authorization')
   console.log(authCookie);
 
   if(!authCookie){
-    throw new HttpError("Invalid token", 401)
+    throw new HttpError("Invalid token, please login first!", 401)
   }
 
   const [type, token] = authCookie.value.split(' ')
+  console.log(type, token);
 
   if(type !== 'Bearer' || !token){
     throw new HttpError("Invalid token", 401)

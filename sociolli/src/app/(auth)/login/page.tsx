@@ -10,8 +10,6 @@ import { useState } from "react"
 import Swal from "sweetalert2"
 
 
-
-
 export default function Page() {
   const router = useRouter()
   const [email, setEmail] = useState("")

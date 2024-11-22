@@ -6,17 +6,17 @@ import { NextRequest } from "next/server";
 
 
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
-    
-    // const { userId } = await request.json()
 
-    // console.log(userId, 'ini apa');
-    
+    const userId = request.headers.get('x-user-id')
 
     if (!userId) {
-      return Response.json({ error: "userId is missing in cookies" }, { status: 401 });
+      throw new HttpError( "userId is missing in headers", 401);
     }
+    // const { userId } = await request.json()
+
+    console.log(userId, 'ini apa');
 
     const userWishlist = await WishList.findByUser(userId);
 
@@ -24,12 +24,11 @@ export async function GET(request: Request) {
     if (!userWishlist || userWishlist.length === 0) {
       return Response.json({ message: "No wishlist found for this user" }, { status: 404 });
     }
-
     
     return  Response.json(userWishlist, { status: 200})
   } catch (error) {
-    console.error("Error in GET /wishlist:", error);
-    return Response.json({ error: "Internal Server Error" }, { status: 500 });
+    console.error(error);
+    return errorHandler(error)
   }
 }
 
