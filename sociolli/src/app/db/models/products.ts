@@ -17,8 +17,10 @@ export type ProductType = {
 export default class Product{
   static col = database.collection<ProductType>("products");
 
-  static async findAll(){
-    return await this.col.find().toArray();
+  static async findAll(page = 1, limit = 10): Promise<ProductType[]>{
+    const skip = (page - 1) * limit;
+    return await this.col.find().skip(skip).limit(limit).toArray();
+    
   }
 
   static async findBySlug(slug: string){

@@ -17,6 +17,7 @@
     "next": "14.2.18",
     "react": "^18",
     "react-dom": "^18",
+    "react-infinite-scroll-component": "^6.1.0",
     "sweetalert2": "^11.14.5",
     "zod": "^3.23.8"
   },
@@ -27,6 +28,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-infinite-scroll-component": "^4.2.5",
     "daisyui": "^4.12.14",
     "eslint": "^8",
     "eslint-config-next": "14.2.18",
