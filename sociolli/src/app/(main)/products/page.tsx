@@ -14,7 +14,7 @@ const ProductFound = ({ initialProducts }: { initialProducts: ProductType[] }) =
   const [page, setPage] = useState<number>(1);
   const [hasMore, setHasMore] = useState<boolean>(true);
 
-  // Fetch Products Function
+  
   const fetchProducts = useCallback(async () => {
     setLoading(true);
     try {
@@ -41,14 +41,14 @@ const ProductFound = ({ initialProducts }: { initialProducts: ProductType[] }) =
     }
   }, [page, query]);
 
-  // Fetch products when query changes
+  
   useEffect(() => {
-    setPage(1); // Reset page ke 1 jika query berubah
+    setPage(1); 
     setHasMore(true);
     fetchProducts();
   }, [query, fetchProducts]);
 
-  // Fetch more products on scroll
+  
   useEffect(() => {
     if (page > 1) {
       fetchProducts();
@@ -57,13 +57,13 @@ const ProductFound = ({ initialProducts }: { initialProducts: ProductType[] }) =
 
   return (
     <div>
-      {/* Search Component */}
+      
       <SearchComponent query={query} setQuery={setQuery} />
 
-      {/* Infinite Scroll Component */}
+    
       <InfiniteScroll
         dataLength={products?.length || 0}
-        next={() => setPage((prev) => prev + 1)} // Increment page
+        next={() => setPage((prev) => prev + 1)} 
         hasMore={hasMore}
         loader={<div className="flex justify-center"><h4>Loading...</h4></div>}
         endMessage={<p>No more products</p>}

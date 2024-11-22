@@ -72,4 +72,29 @@ export async function POST(request: NextRequest) {
   }
 }
 
+export async function DELETE(request: NextRequest) {
+  try {
+    const userId = request.headers.get('x-user-id')
+
+    if (!userId) {
+      throw new HttpError( "userId is missing in headers", 401);
+    }
+
+    const { wishlistId } = await request.json()
+
+    const deletedProduct = await WishList.destroyWishlist({
+      _id: new ObjectId(wishlistId)
+    });
+
+    if (!deletedProduct) {
+      throw new HttpError("This product is not in your wishlist", 404);
+    }
+
+    return Response.json({ message: "This product has been removed from your wishlist" }, { status: 200 });
+
+  } catch (error) {
+    console.error(error);
+    return errorHandler(error)
+  }
+}
 // export async function POST(request: Request) {}

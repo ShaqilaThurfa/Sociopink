@@ -40,8 +40,8 @@ export default function WishListComponent({ wishlists = [] }: WishListComponentP
           className="card card-compact bg-white w-60 rounded-md"
         >
           
-              <DeleteWishlist/>
-              {/* wishlistId={wishlist.wishlist._id} */}
+              <DeleteWishlist  wishlistId={wishlist._id}/>
+             
             
        
           <figure className="p-4 mt-2">

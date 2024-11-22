@@ -5,6 +5,7 @@ import { z } from "zod"
 
 
 export const WishListSchema = z.object({
+  _id: z.instanceof(ObjectId).optional(),
   userId: z.instanceof(ObjectId, { message: "User Id is not detected" }),
   productId: z.instanceof(ObjectId, { message: "Product not found" }),
   createdAt: z.string().optional(),
@@ -78,7 +79,19 @@ export default class WishList {
     }
   }
 
-  static async findOne(filter: Filter<WishListType>) {
-    return await this.col.findOne(filter)
+  static async destroyWishlist(filter: Filter<WishListType>) {
+    try {
+      const result = await this.col.deleteOne(filter);
+
+      if (result.deletedCount === 0) {
+        throw new HttpError("Wishlist not found", 404);
+      }
+
+      return {
+        message: "Wishlist item successfully deleted",
+      };
+    } catch (error) {
+      console.error(error);
+    }
   }
 }

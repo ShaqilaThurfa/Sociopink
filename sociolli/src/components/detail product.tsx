@@ -29,7 +29,6 @@ export default function DetailProduct({ product }: DetailProductProps) {
         </div>
       </div>
 
-      {/* Bagian Detail Produk */}
       <div className="flex-1 flex flex-col space-y-6">
         <h1 className="font-sans font-bold text-xl uppercase tracking-[0.2em] text-black">
           {product.name}
