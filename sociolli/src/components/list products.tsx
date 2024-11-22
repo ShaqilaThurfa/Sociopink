@@ -13,15 +13,7 @@ export default function ProductsList({ products }: ProductsListProps) {
   const router = useRouter();
   return (
     <>
-    <div>
-      <input
-          type="text"
-          placeholder="Search"
-          className="input input-bordered w-full lg:w-1/2 h-10"
-        />
-      </div>
-   
-    <div className="flex flex-wrap mx-0 w-full justify-evenly">
+    <div className="flex flex-wrap mx-0 w-full justify-center">
       
       {products.map((product) => (
         <div

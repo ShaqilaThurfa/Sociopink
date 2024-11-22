@@ -2,29 +2,31 @@
 
 import ProductsList from "@/components/list products";
 import type { ProductType } from "@/app/db/models/products";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Swal from "sweetalert2";
+import SearchComponent from "@/components/searchComponent";
 
-const FirstProduct = ({ product }: { product: ProductType[] }) => {
-  const [products, setProducts] = useState<ProductType[]>(product || []);
+const ProductFound = ({ initialProducts }: { initialProducts: ProductType[] }) => {
+  const [products, setProducts] = useState<ProductType[]>(initialProducts || []);
   const [loading, setLoading] = useState<boolean>(false);
-  const [hasMore, setHasMore] = useState<boolean>(true);
-  const [page, setPage] = useState<number>(2);
   const [query, setQuery] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
+  const [hasMore, setHasMore] = useState<boolean>(true);
 
-  const fetchProducts = async () => {
+  // Fetch Products Function
+  const fetchProducts = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost:3000/api/products?page=${page}`);
+      const res = await fetch(
+        `http://localhost:3000/api/products?page=${page}&query=${encodeURIComponent(query)}`
+      );
       const data = await res.json();
-
-      console.log(data);
 
       if (data.length === 0) {
         setHasMore(false);
       } else {
-        setProducts((prev) => [...prev, ...data]);
+        setProducts((prev) => (page === 1 ? data : [...prev, ...data])); // Reset jika page = 1
       }
     } catch (error) {
       if (error instanceof Error) {
@@ -37,17 +39,31 @@ const FirstProduct = ({ product }: { product: ProductType[] }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [page, query]);
 
+  // Fetch products when query changes
   useEffect(() => {
+    setPage(1); // Reset page ke 1 jika query berubah
+    setHasMore(true);
+    fetchProducts();
+  }, [query, fetchProducts]);
+
+  // Fetch more products on scroll
+  useEffect(() => {
+    if (page > 1) {
       fetchProducts();
-  }, [page]);
+    }
+  }, [page, fetchProducts]);
 
   return (
     <div>
+      {/* Search Component */}
+      <SearchComponent query={query} setQuery={setQuery} />
+
+      {/* Infinite Scroll Component */}
       <InfiniteScroll
         dataLength={products?.length || 0}
-        next={() => setPage((prev) => prev + 1)}
+        next={() => setPage((prev) => prev + 1)} // Increment page
         hasMore={hasMore}
         loader={<h4>Loading...</h4>}
         endMessage={<p>No more products</p>}
@@ -58,4 +74,4 @@ const FirstProduct = ({ product }: { product: ProductType[] }) => {
   );
 };
 
-export default FirstProduct;
+export default ProductFound;
