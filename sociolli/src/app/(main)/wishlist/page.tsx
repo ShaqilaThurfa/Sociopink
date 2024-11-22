@@ -54,7 +54,7 @@ export default function Page() {
     fetchData();
   }, []); 
 
-  if (loading) return <p>Loading...</p>; 
+  if (loading) return <div className="flex justify-center"><p>Loading...</p></div>; 
 
 
   if (error) {

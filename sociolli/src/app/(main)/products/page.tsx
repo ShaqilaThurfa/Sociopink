@@ -65,7 +65,7 @@ const ProductFound = ({ initialProducts }: { initialProducts: ProductType[] }) =
         dataLength={products?.length || 0}
         next={() => setPage((prev) => prev + 1)} // Increment page
         hasMore={hasMore}
-        loader={<h4>Loading...</h4>}
+        loader={<div className="flex justify-center"><h4>Loading...</h4></div>}
         endMessage={<p>No more products</p>}
       >
         <ProductsList products={products} />
