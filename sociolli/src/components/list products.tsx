@@ -12,7 +12,17 @@ type ProductsListProps = {
 export default function ProductsList({ products }: ProductsListProps) {
   const router = useRouter();
   return (
+    <>
+    <div>
+      <input
+          type="text"
+          placeholder="Search"
+          className="input input-bordered w-full lg:w-1/2 h-10"
+        />
+      </div>
+   
     <div className="flex flex-wrap mx-0 w-full justify-evenly">
+      
       {products.map((product) => (
         <div
           key={product._id}
@@ -60,5 +70,6 @@ export default function ProductsList({ products }: ProductsListProps) {
         </div>
       ))}
     </div>
+    </>
   );
 }

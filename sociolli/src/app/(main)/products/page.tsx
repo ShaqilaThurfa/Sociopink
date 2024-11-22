@@ -11,6 +11,7 @@ const FirstProduct = ({ product }: { product: ProductType[] }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [page, setPage] = useState<number>(2);
+  const [query, setQuery] = useState<string>("");
 
   const fetchProducts = async () => {
     setLoading(true);

@@ -8,10 +8,11 @@ export async function GET(request: Request) {
   const page = parseInt(url.searchParams.get("page") || "1", 10);
   const limit = 10;
 
-  try {
-    const products = await Product.findAll(page, limit);
+  const query = url.searchParams.get("query") || undefined;
 
-    
+  try {
+    const products = await Product.findAll(page, limit, query);
+
     return NextResponse.json(products, {
       headers: { "content-type": "application/json" },
     });
