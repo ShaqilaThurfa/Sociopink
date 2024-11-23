@@ -9,7 +9,7 @@ export async function revalidateByPath(path: string){
 }
 
 export async function getProductByParams(slug: string) {
-  const response = await fetch(`http://localhost:3000/api/products/${slug}`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${slug}`);
   
   if (!response.ok) {
     const errorData = await response.json();

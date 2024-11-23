@@ -23,7 +23,7 @@ export default function Page() {
       try {
         setLoading(true); 
 
-        const res = await fetch("http://localhost:3000/api/wishlist", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/wishlist`, {
           method: "GET",
           headers: {
             Cookie: document.cookie,
@@ -50,7 +50,7 @@ export default function Page() {
         } else {
           setError("An unknown error occurred."); 
         }
-        router.push("/login");
+        router.push("/");
       } finally {
         setLoading(false); 
       }

@@ -2,7 +2,7 @@
 
 import Swal from "sweetalert2";
 import { revalidateByPath } from "./actions";
-import { useRouter } from "next/navigation";
+
 
 
 
@@ -11,17 +11,17 @@ type DeleteWishlistProps = {
 };
 
 export default function DeleteWishlist({ wishlistId }: DeleteWishlistProps) {
-  const router = useRouter();
+  
 
   const handleOnDelete = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
     
     try {
-      console.log(wishlistId);
+      // console.log(wishlistId);
       
 
-      const res = await fetch("http://localhost:3000/api/wishlist", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/wishlist`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -34,6 +34,8 @@ export default function DeleteWishlist({ wishlistId }: DeleteWishlistProps) {
         throw new Error(errorData.message || "Failed to delete wishlist");
       }
 
+      // localStorage.removeItem("wishlistId");
+
       Swal.fire({
         title: "Success!",
         text: "This product has been removed from your wishlist",
@@ -43,7 +45,7 @@ export default function DeleteWishlist({ wishlistId }: DeleteWishlistProps) {
       });
 
       await revalidateByPath(`/wishlist`);
-      await router.refresh()
+      // await router.refresh()
 
     } catch (error) {
       console.error("Error:", error);

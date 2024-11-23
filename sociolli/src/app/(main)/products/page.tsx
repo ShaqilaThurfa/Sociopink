@@ -19,7 +19,7 @@ export const ProductFound = ({ initialProducts }: { initialProducts: ProductType
     setLoading(true);
     try {
       const res = await fetch(
-        `http://localhost:3000/api/products?page=${page}&query=${encodeURIComponent(query)}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/products?page=${page}&query=${encodeURIComponent(query)}`
       );
       const data = await res.json();
 

@@ -20,7 +20,7 @@ export default function AddToWishList({ productId }: AddToWishListProps) {
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:3000/api/wishlist", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/wishlist`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,8 +1,10 @@
 "use client"
 
+
 import Image from "next/image";
 import firstbanner from "../assets/firstbanner.webp";
 import { useRouter } from "next/navigation";
+
 
 export default function Banner() {
   const router = useRouter();
