@@ -1,4 +1,4 @@
-import WishList, { WishListSchema } from "@/app/db/models/wishlist";
+import WishList from "@/app/db/models/wishlist";
 import { errorHandler, HttpError } from "@/app/helpers/errorHandler";
 import { ObjectId } from "mongodb";
 import { NextRequest } from "next/server";

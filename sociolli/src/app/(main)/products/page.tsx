@@ -1,32 +1,32 @@
 "use client";
 
 import ProductsList from "@/components/list products";
-import type { ProductType } from "@/app/db/models/products";
 import React, { useCallback, useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Swal from "sweetalert2";
 import SearchComponent from "@/components/searchComponent";
 
-export const ProductFound = ({ initialProducts }: { initialProducts: ProductType[] }) => {
-  const [products, setProducts] = useState<ProductType[]>(initialProducts || []);
+export default function Page() {
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [query, setQuery] = useState<string>("");
   const [page, setPage] = useState<number>(1);
   const [hasMore, setHasMore] = useState<boolean>(true);
 
-  
   const fetchProducts = useCallback(async () => {
     setLoading(true);
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/products?page=${page}&query=${encodeURIComponent(query)}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/products?page=${page}&query=${encodeURIComponent(query), {
+          cache: 'no-store', 
+        }}`
       );
       const data = await res.json();
 
       if (data.length === 0) {
         setHasMore(false);
       } else {
-        setProducts((prev) => (page === 1 ? data : [...prev, ...data])); 
+        setProducts((prev) => (page === 1 ? data : [...prev, ...data]));
       }
     } catch (error) {
       if (error instanceof Error) {
@@ -41,14 +41,12 @@ export const ProductFound = ({ initialProducts }: { initialProducts: ProductType
     }
   }, [page, query]);
 
-  
   useEffect(() => {
-    setPage(1); 
+    setPage(1);
     setHasMore(true);
     fetchProducts();
   }, [query, fetchProducts]);
 
-  
   useEffect(() => {
     if (page > 1) {
       fetchProducts();
@@ -57,13 +55,17 @@ export const ProductFound = ({ initialProducts }: { initialProducts: ProductType
 
   return (
     <div>
-      
       <SearchComponent query={query} setQuery={setQuery} />
 
-    
+      {loading && (
+        <div className="flex justify-center my-4">
+          <h4>Loading...</h4>
+        </div>
+      )}
+
       <InfiniteScroll
         dataLength={products?.length || 0}
-        next={() => setPage((prev) => prev + 1)} 
+        next={() => setPage((prev) => prev + 1)}
         hasMore={hasMore}
         loader={<div className="flex justify-center"><h4>Loading...</h4></div>}
         endMessage={<p>No more products</p>}
@@ -72,6 +74,4 @@ export const ProductFound = ({ initialProducts }: { initialProducts: ProductType
       </InfiniteScroll>
     </div>
   );
-};
-
-export default ProductFound;
+}

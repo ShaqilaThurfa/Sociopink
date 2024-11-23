@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { ExtendedWishListType } from "@/app/(main)/wishlist/page";
 import Swal from "sweetalert2";
 import DeleteWishlist from "./delete";
+import Image from "next/image";
 
 type WishListComponentProps = {
   wishlists: ExtendedWishListType[];
@@ -19,7 +20,7 @@ export default function WishListComponent({ wishlists = [] }: WishListComponentP
   
 
   if (!wishlists.length) {
-    return <div className="flex justify-center">You haven't added anything to your wishlist</div>;
+    <div className="flex justify-center">You haven&#39;t added anything to your wishlist</div>;
   }
     
   } catch (error) {
@@ -40,14 +41,14 @@ export default function WishListComponent({ wishlists = [] }: WishListComponentP
           className="card card-compact bg-white w-60 rounded-md"
         >
           
-              <DeleteWishlist  wishlistId={wishlist._id}/>
-             
-            
-       
+          <DeleteWishlist wishlistId={wishlist._id?.toString() || ""} />
+          
           <figure className="p-4 mt-2">
-            <img
+            <Image
               src={wishlist.wishlist.thumbnail}
               alt={wishlist.wishlist.name} 
+              width={400}
+              height={400}
               className="w-full h-40 object-cover rounded-md"
             />
           </figure>

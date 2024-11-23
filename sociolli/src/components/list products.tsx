@@ -4,6 +4,7 @@ import React from "react";
 import type { ProductType } from "@/app/db/models/products";
 import { useRouter } from "next/navigation";
 import AddToWishList from "./addToWishList";
+import Image from "next/image";
 
 type ProductsListProps = {
   products: ProductType[];
@@ -21,9 +22,11 @@ export default function ProductsList({ products }: ProductsListProps) {
           className="card card-compact bg-white w-60 rounded-md"
         >
           <figure className="p-4">
-            <img
+            <Image
               src={product.thumbnail}
               alt={product.name}
+              width={400}
+              height={400}
               className="w-full h-40 object-cover rounded-md"
             />
           </figure>

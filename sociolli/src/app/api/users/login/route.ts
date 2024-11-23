@@ -2,8 +2,9 @@ import User, { UserSchema } from "@/app/db/models/user"
 import { errorHandler, HttpError } from "@/app/helpers/errorHandler"
 import { checkPassword } from "@/app/helpers/hashingpassword"
 import { signToken } from "@/app/helpers/jwt"
-import { access } from "fs"
-import { cookies } from "next/headers"
+
+
+
 import { NextResponse } from "next/server"
 
 

@@ -17,6 +17,8 @@ export default function Banner() {
           <Image
             src={firstbanner}
             alt="Banner 1"
+            width={400}
+            height={400}
             className="w-[50vw] h-[50vh] object-cover rounded-lg"
             priority
           />

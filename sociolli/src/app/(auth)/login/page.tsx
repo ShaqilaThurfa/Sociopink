@@ -1,10 +1,12 @@
 'use client'
 
-import { HttpError } from "@/app/helpers/errorHandler"
+
 import SociollaTitle from "@/components/sociolla"
 import Cookies from 'js-cookie'
 import Link from "next/link"
-import { redirect, useRouter } from "next/navigation"
+import { useRouter } from "next/navigation"
+
+
 
 import { useState } from "react"
 import Swal from "sweetalert2"
@@ -15,11 +17,12 @@ export default function Page() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/login`, {
         method: "POST",
+        cache: 'no-store', 
         headers: {
           "Content-Type": "application/json",
         },
@@ -29,20 +32,20 @@ export default function Page() {
         }),
       });
 
-      const data = await res.json() as { message?: string, accessToken?: string}  
+      const data = await res.json() as { message?: string, accessToken?: string }
 
       // console.log("Success:", data);
       if (!res.ok && data.message) {
-        const errorData = await res.json(); 
-        throw new Error(errorData.message); 
+        const errorData = await res.json();
+        throw new Error(errorData.message);
       }
 
       // console.log(data.accessToken);
-      
+
       Cookies.set('Authorization', `Bearer ${data.accessToken}`, { expires: 7 })
 
       // console.log(Cookies);
-      
+
 
       Swal.fire({
         title: "Success!",
@@ -54,15 +57,15 @@ export default function Page() {
     } catch (error) {
       console.log("Error:", error);
 
-      if(error instanceof Error){
+      if (error instanceof Error) {
         Swal.fire({
           title: "Error!",
           text: error.message,
           timer: 2000,
         })
       }
-      
-      
+
+
     }
   }
 
@@ -109,7 +112,7 @@ export default function Page() {
         </form>
 
         <p className="text-center mt-4">
-          Don't have an account?{" "}
+          Don&#39;t have an account?{" "}
           <Link href="/register" className="text-pink-500 hover:underline">
             Register
           </Link>

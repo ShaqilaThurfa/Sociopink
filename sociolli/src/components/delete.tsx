@@ -23,6 +23,7 @@ export default function DeleteWishlist({ wishlistId }: DeleteWishlistProps) {
 
       const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/wishlist`, {
         method: "DELETE",
+        cache: 'no-store', 
         headers: {
           "Content-Type": "application/json",
         },

@@ -22,7 +22,7 @@ export default function Login() {
         >
           <div
             className="bg-white rounded-lg shadow-lg p-6 w-[90%] max-w-md"
-            onClick={(e) => e.stopPropagation()} 
+            onClick={(e) => e.stopPropagation()}
           >
             <h2 className="text-xl font-bold mb-4">Login</h2>
             <form>
@@ -59,7 +59,7 @@ export default function Login() {
             </button>
 
             <p className="mt-4 text-center">
-              Don't have an account?{" "}
+              Don&#39;t have an account?{" "}
               <Link href="/signup" className="text-blue-500">
                 Sign up
               </Link>
