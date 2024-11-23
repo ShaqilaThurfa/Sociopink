@@ -1,6 +1,9 @@
 import Banner from "@/components/banner";
 import FeaturedProducts from "@/components/featureproduct";
 import { ProductType } from "@/app/db/models/products";
+import About from "@/components/infoSocioPink";
+
+
 
 async function fetchProducts() {
   try {
@@ -25,6 +28,7 @@ export default async function Home() {
     <div>
       <Banner />
       <FeaturedProducts products={featuredProducts} />
+      <About/>
     </div>
   );
 }

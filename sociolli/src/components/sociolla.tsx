@@ -10,7 +10,7 @@ export default function SociollaTitle() {
       <Link href="/"
         className="text-[40px] font-bold italic text-black tracking-wider custom-font"
       >
-        Sociolli
+        SocioPink
       </Link>
       <style jsx>{`
         .custom-font {

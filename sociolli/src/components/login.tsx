@@ -22,7 +22,7 @@ export default function Login() {
         >
           <div
             className="bg-white rounded-lg shadow-lg p-6 w-[90%] max-w-md"
-            onClick={(e) => e.stopPropagation()} // Prevent modal close when clicking inside
+            onClick={(e) => e.stopPropagation()} 
           >
             <h2 className="text-xl font-bold mb-4">Login</h2>
             <form>

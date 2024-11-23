@@ -79,6 +79,15 @@ export default class WishList {
     }
   }
 
+  static async findOne(filter: Filter<WishListType>){
+    try {
+    const wishlist = await this.col.findOne(filter)
+    return wishlist
+  } catch(error){
+    console.log(error)
+  }
+}
+
   static async destroyWishlist(filter: Filter<WishListType>) {
     try {
       const result = await this.col.deleteOne(filter);

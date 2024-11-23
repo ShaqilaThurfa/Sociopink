@@ -18,7 +18,7 @@ const FeaturedProducts: React.FC<FeatureProductProps> = ({ products = [] }) => {
           <ProductsList products={products} />
         </div>
       </div>
-      <div className="text-center mt-8">
+      <div className="text-center mt-8 mb-40">
         <Link
           href="/products"
           className="px-6 py-3 bg-indigo-600 text-white rounded-lg text-sm font-semibold hover:bg-indigo-700 transition"

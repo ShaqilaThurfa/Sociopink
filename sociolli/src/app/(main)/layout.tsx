@@ -1,6 +1,8 @@
 
+import Footer from "@/components/footer";
 import Navbar from "@/components/navbar"
-import FooterNavBar from "@/components/navbar2"
+
+
 
 
 export default function MainLayout({
@@ -9,13 +11,14 @@ export default function MainLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="relative">
-      <div className="mx-auto sticky top-0 z-50 bg-white shadow my-5">
+    <div>
+      <div className="mx-auto sticky top-0 z-20 bg-white shadow my-5 flex flex-wrap">
         <Navbar />
       </div>
       <main>
         {children}
       </main>
+      <Footer/>
     </div>
 
   );

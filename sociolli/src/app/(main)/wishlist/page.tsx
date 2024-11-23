@@ -5,6 +5,8 @@ import { WishListType } from "@/app/db/models/wishlist";
 import WishListComponent from "@/components/wishlistList";
 import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
 
 export type ExtendedWishListType = WishListType & {
   wishlist: ProductType;
@@ -14,6 +16,7 @@ export default function Page() {
   const [data, setData] = useState<ExtendedWishListType[]>([]); 
   const [loading, setLoading] = useState(true); 
   const [error, setError] = useState<string | null>(null); 
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,9 +46,11 @@ export default function Page() {
             timer: 2000,
             icon: "error",
           });
+          
         } else {
           setError("An unknown error occurred."); 
         }
+        router.push("/login");
       } finally {
         setLoading(false); 
       }
