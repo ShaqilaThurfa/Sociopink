@@ -12,7 +12,6 @@ export default function MainLayout({
     <div className="relative">
       <div className="mx-auto sticky top-0 z-50 bg-white shadow my-5">
         <Navbar />
-        <FooterNavBar />
       </div>
       <main>
         {children}

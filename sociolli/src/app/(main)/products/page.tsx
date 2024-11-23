@@ -7,7 +7,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Swal from "sweetalert2";
 import SearchComponent from "@/components/searchComponent";
 
-const ProductFound = ({ initialProducts }: { initialProducts: ProductType[] }) => {
+export const ProductFound = ({ initialProducts }: { initialProducts: ProductType[] }) => {
   const [products, setProducts] = useState<ProductType[]>(initialProducts || []);
   const [loading, setLoading] = useState<boolean>(false);
   const [query, setQuery] = useState<string>("");
@@ -26,7 +26,7 @@ const ProductFound = ({ initialProducts }: { initialProducts: ProductType[] }) =
       if (data.length === 0) {
         setHasMore(false);
       } else {
-        setProducts((prev) => (page === 1 ? data : [...prev, ...data])); // Reset jika page = 1
+        setProducts((prev) => (page === 1 ? data : [...prev, ...data])); 
       }
     } catch (error) {
       if (error instanceof Error) {

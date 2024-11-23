@@ -5,10 +5,23 @@ import SociollaTitle from "./sociolla";
 
 export default function Navbar() {
   return (
-    <nav className="navbar bg-base-100 px-6 py-2 flex items-center justify-between">
-      <div className="flex-1 flex items-center gap-4">
+    <nav className="navbar bg-base-100 px-20 justify-between">
+      <div className="flex-1 flex items-center gap-60">
         <SociollaTitle />
+
+        <div className="container">
+        <ul className="menu menu-horizontal px-8 gap-6">
+          <li>
+            <Link href="/products">Products</Link>
+          </li>
+          <li>
+            <Link href="/wishlist">Wishlist</Link>
+          </li>
+        </ul>
       </div>
+
+      </div>
+
       <div className="flex gap-4 items-center">
         <Link href="/login" className="btn btn-ghost text-xl h-10">
           Login
