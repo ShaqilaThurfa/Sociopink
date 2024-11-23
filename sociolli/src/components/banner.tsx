@@ -1,41 +1,32 @@
+"use client"
+
+import Image from "next/image";
+import firstbanner from "../assets/firstbanner.webp";
+import { useRouter } from "next/navigation";
+
 export default function Banner() {
+  const router = useRouter();
   return (
-    <div className="carousel rounded-box">
-      <div className="carousel-item">
-        <img
-          src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp"
-          alt="Burger" />
-      </div>
-      <div className="carousel-item">
-        <img
-          src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp"
-          alt="Burger" />
-      </div>
-      <div className="carousel-item">
-        <img
-          src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp"
-          alt="Burger" />
-      </div>
-      <div className="carousel-item">
-        <img
-          src="https://img.daisyui.com/images/stock/photo-1494253109108-2e30c049369b.webp"
-          alt="Burger" />
-      </div>
-      <div className="carousel-item">
-        <img
-          src="https://img.daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.webp"
-          alt="Burger" />
-      </div>
-      <div className="carousel-item">
-        <img
-          src="https://img.daisyui.com/images/stock/photo-1559181567-c3190ca9959b.webp"
-          alt="Burger" />
-      </div>
-      <div className="carousel-item">
-        <img
-          src="https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.webp"
-          alt="Burger" />
+    <div className="carousel rounded-box mx-auto w-[70vw] h-[50vh] flex justify-center items-center">
+    
+      <div className="carousel-item w-full h-full rounded-lg">
+        
+        <div className="carousel-item">
+          <Image
+            src={firstbanner}
+            alt="Banner 1"
+            className="w-[50vw] h-[50vh] object-cover rounded-lg"
+            priority
+          />
+        </div>
+        
+        <div className="carousel-item w-[50vw] h-[50vh] flex items-center bg-pink-200">
+          <button className="mx-8 text-4xl font-bold text-pink-700 justify-self hover:text-pink-900 hover:border-pink-700 
+            active:bg-pink-100 active:text-pink-800 transition duration-300" onClick={() => router.push("/products")}>
+            Shop Now
+          </button>
+        </div>
       </div>
     </div>
-  )
+  );
 }
