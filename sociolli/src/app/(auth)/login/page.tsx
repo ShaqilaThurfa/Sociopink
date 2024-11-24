@@ -22,7 +22,6 @@ export default function Page() {
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/login`, {
         method: "POST",
-        cache: 'no-store', 
         headers: {
           "Content-Type": "application/json",
         },

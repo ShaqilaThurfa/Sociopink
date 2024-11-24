@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = 'force-dynamic'
+
 import ProductsList from "@/components/list products";
 import React, { useCallback, useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -17,9 +19,7 @@ export default function Page() {
     setLoading(true);
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/products?page=${page}&query=${encodeURIComponent(query), {
-          cache: 'no-store', 
-        }}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/products?page=${page}&query=${encodeURIComponent(query)}`
       );
       const data = await res.json();
 

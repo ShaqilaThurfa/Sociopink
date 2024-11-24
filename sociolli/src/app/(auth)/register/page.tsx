@@ -20,9 +20,8 @@ export default function Page() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/register`, {
+      const res = await fetch(`/api/users/register`, {
         method: "POST",
-        cache: 'no-store', 
         headers: {
           "Content-Type": "application/json",
         },
