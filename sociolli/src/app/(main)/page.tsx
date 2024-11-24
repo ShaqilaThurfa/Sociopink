@@ -7,7 +7,7 @@ import About from "@/components/infoSocioPink";
 
 async function fetchProducts() {
   try {
-    const res = await fetch(`/api/products?page=1`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products?page=1`);
     if (!res.ok) {
       throw new Error("Failed to fetch products");
     }
