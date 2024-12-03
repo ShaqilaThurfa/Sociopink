@@ -36,11 +36,12 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="navbar px-20 justify-between flex flex-wrap">
-      <div className="flex-1 flex flex-wrap items-center gap-60">
+    <nav className="navbar px-20 justify-between flex flex-grow">
+      <div className="flex flex-growp">
+        <div>
         <SociollaTitle />
-
-        <ul className="menu menu-horizontal px-8 gap-6">
+        </div>
+        <ul className="menu menu-horizontal flex item-center flex-grow mx-auto px-8 gap-6">
           <li>
             <Link href="/products">Products</Link>
           </li>
