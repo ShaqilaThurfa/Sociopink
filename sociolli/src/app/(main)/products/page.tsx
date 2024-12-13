@@ -58,7 +58,7 @@ export default function Page() {
       <SearchComponent query={query} setQuery={setQuery} />
 
       {loading && (
-        <div className="flex justify-center my-4">
+        <div className="flex justify-center my-4 hidden">
           <h4>Loading...</h4>
         </div>
       )}

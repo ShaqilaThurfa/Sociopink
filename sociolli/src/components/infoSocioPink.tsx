@@ -4,14 +4,14 @@ export default function About() {
   return (
     <div className="min-h-screen bg-pink-50 flex flex-col items-center">
       
-      <header className="w-full bg-pink-600 text-white py-6">
+      <header className="w-full bg-pink-600 text-white py-4 mb-8">
         <div className="max-w-4xl mx-auto px-4">
           <h1 className="text-4xl font-bold text-center">About Sociopink</h1>
         </div>
       </header>
 
     
-      <main className="flex-1 max-w-4xl mx-auto px-4 py-8">
+      <main className="flex-1 max-w-4xl mt-30 mx-auto px-4 py-8">
         <section className="mb-12 text-center">
           <h2 className="text-3xl font-bold text-pink-700 mb-4">
             Welcome to Sociopink
