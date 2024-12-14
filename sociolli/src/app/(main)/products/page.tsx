@@ -54,7 +54,7 @@ export default function Page() {
   }, [page, fetchProducts]);
 
   return (
-    <div>
+    <div className="mt-24">
       <SearchComponent query={query} setQuery={setQuery} />
 
       {loading && (
